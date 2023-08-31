@@ -1,7 +1,76 @@
+---
+theme: default
+highlighter: shiki
+transition: slide-left
+title: Welcome to Slidev
+layout: cover
+---
 
+# Programming 101 - 1
+# 变量和内存
+
+徐延楷 a.k.a. Froster  
+20级的老东西
+
+-----
+# 先来一段程序......
+你们上课应该讲了吧
+
+``` java
+public class Test { // 先忽略
+    public static void main (String[] args) { // 先忽略
+        Scanner s = new Scanner(System.in); // 先忽略
+
+        // ------
+        int a = s.nextInt(); // 输入一个数
+        int b = s.nextInt(); // 输入另一个数
+        int c = 1; // 1
+        int result = a + b + c; // 计算结果
+        // ------
+
+        System.out.println(result); // 输出
+    }
+}
+```
+
+这个程序计算：$f(a, b) = a + b + 1$，很简单....吗？
+
+----- 
+
+# 变量
+a，b，c还有result是什么？
+
+``` java
+int c = 1;
+int result = a + b + c;
+```
+
+先看一道初中物理题的一行：
+
+*...*  
+*由xxx得，*$x_1 = v_0 + at = 114m$*。所以，*$x' = x_0 + x_1 = 514m$。
+
+这里出现的字母（比如$x_1$）就可以看作变量，即装有真实数据（114m）的容器，或者对真实数据的引用。
+
+变量和数学里的未知数不太一样。我们写下方程$x + 1 = 2$时，求解的目标是x。  
+写下$x_1 = v_0 + at = ...$时，求解的目标是$x_1$，右边的$v_0, a, t$都是**已知的**。
+
+回到那两行代码。按上面的思路，在这两行代码执行结束后：
+- 在代码里写下c就是在指代1。
+- 在代码里写下result就是在指代$a + b + c$的和。
+
+-----
+
+# 变量里装的东西
+1是什么？
+
+<!-- 下文施工中 -->
+
+
+-----
 
 # 数据类型
-x是什么？
+a和b是什么？
 
 $f(x) = 114x + 514x$。x只能是数字吗？
 
