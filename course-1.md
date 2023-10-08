@@ -2,12 +2,12 @@
 theme: default
 highlighter: shiki
 transition: slide-left
-title: Welcome to Slidev
+title: Introduction
 layout: cover
 ---
 
 # Java互助课堂（周一
-# Introduction
+# 1.Introduction
 
 徐延楷 a.k.a. Froster  
 20级的老东西
@@ -451,4 +451,4 @@ btw，科学上网几乎是必备的。你需要流畅的访问Google，StackOve
 # 预告
 
 - 类型系统，变量，内存
-- 下节课之前你们java课上讲过的东西
+- 有时间就讲点控制语句

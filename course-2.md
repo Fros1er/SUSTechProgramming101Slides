@@ -2,7 +2,7 @@
 theme: default
 highlighter: shiki
 transition: slide-left
-title: Welcome to Slidev
+title: variable
 layout: cover
 ---
 
@@ -14,26 +14,22 @@ layout: cover
 
 -----
 # 先来一段程序......
-你们上课应该讲了吧
+老黄历了
 
 ``` java
-public class Test { // 先忽略
-    public static void main (String[] args) { // 先忽略
-        Scanner s = new Scanner(System.in); // 先忽略
-
-        // ------
-        int a = s.nextInt(); // 输入一个数
-        int b = s.nextInt(); // 输入另一个数
-        int c = 1; // 1
-        int result = a + b + c; // 计算结果
-        // ------
-
-        System.out.println(result); // 输出
+public class Test {
+    public static void main (String[] args) {
+        Scanner s = new Scanner(System.in);
+        int a = s.nextInt();
+        int b = s.nextInt(); 
+        int c = 1;
+        int result = a + b + c;
+        System.out.println(result);
     }
 }
 ```
 
-这个程序计算：$f(a, b) = a + b + 1$，很简单....吗？
+这个程序计算：$f(a, b) = a + b + 1$，很简单。大伙上了正课应该都看得出来。
 
 ----- 
 
