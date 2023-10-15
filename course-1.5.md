@@ -49,17 +49,18 @@ java为啥又编译又解释：把你说的1+1**编译**成jvm能看懂的形式
 ----- 
 
 # lecture课件里的第一个程序
+`java test a b c`
+
 ``` java
 public class Welcome {
   public static void main(String[] args) {
-    // comment
-    /* 
-    comment2
-    */
-    System.out.println("Welcome to Java Programming!");
+    System.out.println(args[1]); // a
+    System.out.println(args[2]); // b
   }
 }
 ```
+
+<img src="img/a.png" />
 
 - `public, class, static`：后面再讲，在你们写多个文件的程序之前抄上去就好
 - `public static void main(String[] args)`：主方法。计算机会从这个方法开始执行程序。
@@ -113,6 +114,8 @@ import java.util.Scanner;
 
 Scanner scanner = new Scanner(System.in); 
 String s = scanner.next();
+String strs[] = s.split(' ');
+
 int i = scanner.nextInt();
 T t = Scanner.nextT(); // T for any
 ```
