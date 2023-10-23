@@ -17,6 +17,26 @@ layout: cover
 周一和周五的风格大概也许差别挺大
 
 -----
+
+# 扫左边的签到，右边的加互助课堂群
+（来这的不会有人没加互助课堂群吧orz
+
+<span style="color: red">七</span><span style="color: lime">点</span><span style="color: blue">开</span><span style="color: green">讲</span> \
+社恐犯了 整点花活
+
+## wtf 这么多人 这都比某门寄系必修专业课人多了
+<br />
+
+<div grid="~ cols-2 gap-4">
+<div>
+<img src="img/qd.jpg" style="width:20rem;"/>
+</div>
+<div>
+<img src="img/qrc.jpg"  style="width:15rem;"/>
+</div>
+</div>
+---
+
 # debug？
 为啥叫这名？
 
