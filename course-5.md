@@ -6,7 +6,7 @@ title: variable
 layout: cover
 ---
 
-# Java互助课堂（周一
+# Java互助课堂（周五
 # 4. 继承
 
 徐延楷 a.k.a. Froster  
@@ -16,13 +16,13 @@ layout: cover
 
 -----
 # 枚举
-先来点开胃菜
+<div />
 
 举个例子：
 - 一个游戏角色有三种状态：走，跑，站着不动。
 - 一个棋子有三种颜色：黑或者白或者红
 
-我们要用一个变量记录上面的内容。上节课的例子里用`int`来记录，0代表一种，1代表另一种。这个得用大脑翻译一下，不太方便。
+我们要用一个变量记录上面的内容。上节课的例子里用`int`来记录，0代表一种，1代表另一种。这个得用大脑翻译一下，不太方便。而且int除了123还能装114514。。。
 
 ``` java
 public enum Color {
@@ -51,7 +51,7 @@ a.clear(); // 清空。 a: []
 
 注意：循环删ArrayList的元素要从后往前删
 ``` java
-ArrayList arr = ...; // arr: [1, 2, 3, 4, 5, 6]
+ArrayList<Integer> arr = ...; // arr: [1, 2, 3, 4, 5, 6]
 for (int i = arr.size(); i >= 0; i--) {
     if (...) arr.remove(i);
     // 假设删除元素3：[1, 2, 4, 5, 6]。
@@ -59,7 +59,7 @@ for (int i = arr.size(); i >= 0; i--) {
 }
 ```
 
-尖括号和Integer稍后再讲。我是搞不懂为啥老师在讲继承之前就讲wrapper class。。。
+尖括号和Integer稍后再讲。
 
 -----
 # Package
@@ -102,21 +102,19 @@ java的根目录（从哪个文件夹开始找文件）是src。所以：
 
 <img src="img/3-3.png" style="height:2rem"/>
 
-回到这个图。。。
+回到这个图。。。所有的变量都对应一段内存（地址：内存里装的东西），
 
-基本类型变量直接代表一段内存，引用类型变量先代表一个地址，通过这个地址再代表一段内存。(1)
+基本类型变量对应的内存里放的是变量的值（变量里实际装的东西），引用类型变量对应的内存里放的是地址，通过这个地址指向另一段内存，另一段内存里实际装着变量的值。
 
-还记得这个不？
+所有变量**直接**对应的内存都在栈（stack）里（基本类型变量的值和引用类型变量的地址），**间接**指向的内存都在堆（heap）里（引用类型变量的值）。
 
-所有变量**直接**代表的内存都在栈（stack）里，**间接**代表的内存都在堆（heap）里。
-
-由于(1)这句话，也可以说所有的基本类型变量的值都在栈里，所有引用类型变量的值都在堆里。
+也可以说所有的基本类型变量的值都在栈里，所有引用类型变量的值都在堆里。
 
 why？（以下不考）
 
-栈内存适合放生存时间短的，长度比较小而且长度确定的东西，堆内存相反。
+栈内存适合放生存时间（需要用到这个值的时间）短的，长度比较小的东西，堆内存相反。
 
-基本类型变量和内存地址（“变量”本身）占用内存比较小的，而且是定长的。生存时间很短，出作用域就没了。
+基本类型变量和内存地址占用内存比较小，而且生存时间很短，出作用域就没了。
 
 引用类型变量的值由于可以被多个引用类型变量指向，生存时间可能很长，而且可能会很大（比如长数组）。
 
@@ -128,11 +126,11 @@ why？（以下不考）
 
 ``` java
 public class Piece {
-    private Type type;
+    private PieceType type;
     Point2D[] canMoveTo() {
-        if (type == Type.KNIGHT) {
+        if (type == KNIGHT) {
             // ...
-        } else if (type == Type.BISHOP) {
+        } else if (type == BISHOP) {
             // ...
         } else ...
     }
@@ -189,9 +187,9 @@ Piece[][] board;
 # 继承
 难以理解的东西
 
-java解决这个问题的方法是，额外声明`Pawn`是一种棋子，`Knight`也是一种棋子。
+java（或者OOP）解决这个问题的方法是，让`Pawn`**是**一种棋子，`Knight`也**是**一种棋子。
 ``` java
-public class Piece { public abstract void move(); }
+public abstract class Piece { public abstract void move(); }
 public class Pawn extends Piece {}
 public class Knight extends Piece {}
 Piece[][] board;
@@ -201,7 +199,7 @@ board[0][0] = new Knight();
 
 所谓的 **"is a"** 关系。我们管这个叫 **继承**（inherit）。
 
-虽然它叫继承，但我不太喜欢这个名字...只给人一种接受的感觉。可能特化（specialization）更准确一点。
+虽然它叫继承，但我不太喜欢这个名字...中文下的继承是A接受了B遗留的东西，AB是两个独立的个体。但是OOP的继承代表 **“A就是B”**，只不过A在B的基础上多了/改了点东西。可能特化（specialization）更准确一点。
 
 建议大家忘记继承在中文里的意思，这么来理解这个概念：
 
@@ -211,7 +209,7 @@ board[0][0] = new Knight();
 
 -----
 # 一些概念
-我不知道先讲例子再讲概念是不是好的讲法，但是无所谓了
+<div />
 
 ``` java
 public class Pawn extends Piece {}
@@ -219,8 +217,9 @@ public class Knight extends Piece {}
 ```
 
 - `extends`关键字：用来声明`Pawn`继承`Piece`。
-- `Pawn`是`Piece`的子类（subclass）。
-- `Piece`是`Pawn`的父类（superclass）。
+- `Pawn`是`Piece`的子类（subclass, derived class, child class）。
+- `Piece`是`Pawn`的父类（superclass, base class, parent class）。
+
 
 -----
 
@@ -240,11 +239,13 @@ public class Knight extends Piece {}
 - 那子类理应拥有父类的全部特性
 - 比如，学生是人，那学生必然有人的全部特征
 
+继承对于变量和方法的处理本质上就是把父类复制粘贴一份进子类。。
+
 </div>
 <div>
 
 ``` java
-class A {
+class Base {
     public int x;
     protected int y;
     private int z;
@@ -252,7 +253,7 @@ class A {
     private void f2() {}
 }
 
-class B {
+class Derived extends Base {
     public f() {
         sout(x); // ok
         sout(y); // ok
@@ -272,7 +273,7 @@ psvm() {
 
 -----
 # protected
-还是想不出副标题
+<div />
 
 何时使用protected?
 - 一个成员变量需要子类来修改
@@ -289,6 +290,32 @@ psvm() {
     + 想不出好的例子，总之就是不想让外界看到但是想让子类看到
 
 和这两件事无关的成员变量全部private
+
+-----
+# 子类实例赋值给父类变量
+这个会考
+
+``` java
+class Piece {}
+class Pawn extends Piece {}
+
+Pawn pawn = new Pawn();
+Piece p = pawn;
+// Pawn pawn2 = p; // err!
+```
+
+由于Pawn是一个Piece，所以Piece类型自然可以装一个Pawn进去。
+
+所有的父类变量都能装子类的实例，反之不行。
+
+e.g. 这里有一个纸盒子A，写着“只能猫钻进去”。来了一只狸花猫，钻进去了。因为狸花猫是猫。
+
+**但是！虽然外面的人看不见盒子里的猫是什么品种，狸花猫不会一进去就退化成真空球型猫！**  
+**只是外面的人看不见品种（具体是哪个子类），只知道是猫（父类）而已，装进去的实例是不会变的！**
+
+这里还有一个纸盒子B，写着“只能白猫钻进去”。有一个人想把纸盒子A里的东西倒进B...
+
+这是不行的。A里可能是白猫也可能是其他品种，倒的时候可能违反规则。
 
 -----
 # @Override
@@ -435,6 +462,71 @@ public class Derived {
 下节课会复读一遍，因为我写完这个之后发现它有个名字叫多态。你们还没讲。
 
 -----
+# 继承的用处
+<div />
+
+- 外界调用成员方法的时候，不需要知道某个特定种类的棋子怎么动，只需要知道它是个棋子可以动就ok了
+    + 有一个`Piece p`。`p`可能是任何种类的棋子。你在写`p.canMoveTo()`的时候不用关心到底是哪种棋子。
+
+还是上节课说的，各种Piece都是你队友写的，但是你用的时候甚至不需要知道有哪些种类的棋子，用就完了
+``` java
+Piece[] pieces;
+void f() {
+    for (Piece p : Pieces) {
+        p.canMoveTo();
+    }
+}
+```
+
+-----
+# 继承的用处
+<div />
+
+- 一个类可以方便的被更换和拓展
+    + 我们在用一个类`A`的时候，一般只通过一系列方法和它交互
+    + 如果有另一个类`B`，同样有这一系列方法，名字还一模一样，那它可以无缝的替换`B`。
+
+我在互助课堂群里发过一个Tester...
+``` java
+Scanner s = new Scanner();
+int a = s.nextInt();
+```
+Scanner从命令行输入。现在你想让nextInt的结果变成你自己生成的随机数..
+``` java
+class Tester {
+    int nextInt();
+}
+Tester s = new Tester();
+int a = s.nextInt();
+```
+
+只用改这一行。
+
+-----
+# 继承的用处
+<div />
+
+但是这样每次跑要改代码重新编译。
+
+这时候就可以继承了...
+
+``` java
+class Tester extends Scanner {
+    @Override
+    int nextInt();
+}
+Scanner s;
+if (inOJ()) {
+    s = new Scanner();
+} else {
+    s = new Tester();
+}
+int a = s.nextInt();
+```
+
+仅供演示继承的作用，实际不推荐这么写。推荐的写法下节课等你们学了抽象类和接口再讲。
+
+-----
 
 # 里式替代原则（Liskov Substitution Principle）
 放在这，理解就好
@@ -522,21 +614,60 @@ ArrayList里面其实就是一个`Object[]`，这样就啥都能装了。
 
 
 -----
-# 画饼环节
-鸽子的自我修养
+# bonus：变量和类的内存结构
+欢迎回到底层，同志们。这个不会考。
 
-虽然有两周没开互助课堂，但有一名助教还是在拖ddl
+这是内存的一部分，如果你们还有印象。。。
+<img src="img/5-1.png" style="height:10rem"/>
 
-我的意思是，他拖到了上课的当天才开始做ppt
+内存地址的每个下标对应一个字节（byte, 8bits），图里往下一行地址增加4，所以一行代表4 bytes。
 
-我不说这个助教是谁
+一个int是4 bytes，所以一行能装一个int。long是8 bytes，一个long要两行。
 
-作为填充上课内容的补救，他决定给大伙看看这次的assignment
+<img src="img/5-2.png" style="height:5rem"/>
 
-这次assignment应该已经面向对象了，让我康康你们的设计正不正常（确信
+-----
+# 变量的内存结构
+欢迎回到底层，同志们。这个不会考。
 
-还没写完的可以跑路了，不想给我看的也可以跑路了
+然后有人想存一个int数组。
 
-以及，等讲完面向对象的所有课（抽象类，接口啥的），我应该会翻一个陈年老项目出来，带大火从头设计一下里面的每个类
+int数组是一堆有序的int，把一堆有序的int放进内存的话。。。就顺着排起来吧
 
-饼得画在这，要不我会鸽的
+假设int[] a分配到地址0：
+
+<img src="img/5-3.png" style="height:12rem"/>
+
+（这就是为什么数组下标从0开始，假设数组b被分配的地址是m，第一个元素的地址就是$m + 0$
+
+（我前几节课竟然忘记讲了
+
+-----
+# 类的内存结构
+欢迎回到底层，同志们。这个不会考。
+
+然后有人定义了一个class。
+``` java
+class Foo {
+    int x;
+    long y;
+}
+```
+Foo是一个int和一个long，我们还是把它顺着排起来吧。。。
+
+<img src="img/5-4.png" style="height:6rem"/>
+
+-----
+# 类的内存结构
+欢迎回到底层，同志们。这个不会考。
+
+然后有人继承了一个class。
+``` java
+class Bar extends Foo {
+    int z;
+}
+```
+
+Bar是一个Foo，它拥有Foo的全部成员，所以。。。顺着排起来。。。
+
+<img src="img/5-5.png" style="height:10rem"/>
